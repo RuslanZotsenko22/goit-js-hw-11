@@ -8,7 +8,7 @@ const searchInput = document.getElementById('search-input');
 const gallery = document.getElementById('gallery');
 const loader = document.getElementById('loader');
 
-const API_KEY = '44426411-2b9aaab226d67ab5863731517'; // KEY API
+const API_KEY = '44426411-2b9aaab226d67ab5863731517'; // my key API
 
 searchForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -63,5 +63,5 @@ function displayImages(images) {
     }).join('');
 
     gallery.innerHTML = imageCards;
-    new SimpleLightbox('.gallery a').refresh();
+    new SimpleLightbox('.gallery').refresh();
 }
