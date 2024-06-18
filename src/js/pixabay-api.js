@@ -8,4 +8,3 @@ export async function fetchImages(query) {
     return response.json();
 }
 
-

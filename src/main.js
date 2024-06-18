@@ -1,7 +1,10 @@
+import { fetchImages } from './js/pixabay-api';
+import { renderImages } from './js/render-functions'; 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+
 
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-input');
@@ -26,7 +29,7 @@ searchForm.addEventListener('submit', async (event) => {
     loader.style.display = 'block';
 
     try {
-        const response = await fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(query)}&image_type=photo&orientation=horizontal&safesearch=true`);
+        const response = await fetch(https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(query)}&image_type=photo&orientation=horizontal&safesearch=true);
         const data = await response.json();
 
         if (data.hits.length === 0) {
@@ -47,21 +50,21 @@ searchForm.addEventListener('submit', async (event) => {
     }
 });
 
-function displayImages(images) {
-    const imageCards = images.map(image => {
-        return `
-            <a href="${image.largeImageURL}" class="gallery-item">
-                <img src="${image.webformatURL}" alt="${image.tags}" />
-                <div class="info">
-                    <p><b>Likes:</b> ${image.likes}</p>
-                    <p><b>Views:</b> ${image.views}</p>
-                    <p><b>Comments:</b> ${image.comments}</p>
-                    <p><b>Downloads:</b> ${image.downloads}</p>
-                </div>
-            </a>
-        `;
-    }).join('');
+// function displayImages(images) {
+//     const imageCards = images.map(image => {
+//         return `
+//             <a href="${image.largeImageURL}" class="gallery-item">
+//                 <img src="${image.webformatURL}" alt="${image.tags}" />
+//                 <div class="info">
+//                     <p><b>Likes:</b> ${image.likes}</p>
+//                     <p><b>Views:</b> ${image.views}</p>
+//                     <p><b>Comments:</b> ${image.comments}</p>
+//                     <p><b>Downloads:</b> ${image.downloads}</p>
+//                 </div>
+//             </a>
+//         `;
+//     }).join('');
 
-    gallery.innerHTML = imageCards;
-    new SimpleLightbox('.gallery a').refresh();
-}
+//     gallery.innerHTML = imageCards;
+//     new SimpleLightbox('.gallery a').refresh();
+// }
