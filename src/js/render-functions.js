@@ -1,31 +1,45 @@
 
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-
-let lightbox;
-
-export function displayImages(images) {
-    const gallery = document.getElementById('gallery');
-    gallery.innerHTML = images.map(image => `
-        <li class="gallery-item">
-            <a href="${image.largeImageURL}" class="gallery-link">
-                <img src="${image.webformatURL}" alt="${image.tags}">
-            </a>
-            <div class="info">
-                <p><strong>Likes:</strong> ${image.likes}</p>
-                <p><strong>Views:</strong> ${image.views}</p>
-                <p><strong>Comments:</strong> ${image.comments}</p>
-                <p><strong>Downloads:</strong> ${image.downloads}</p>
-            </div>
-        </li>
-    `).join('');
-
-    if (lightbox) {
-        lightbox.refresh();
-    } else {
-        lightbox = new SimpleLightbox('.gallery a', {
-            captionsData: 'alt',
-            captionDelay: 250
-        });
-    }
-}
+export function renderMarkup(imagesData) {
+    return imagesData
+      .map(
+        ({
+          largeImageURL,
+          webformatURL,
+          tags,
+          likes,
+          views,
+          comments,
+          downloads,
+        }) => `
+      <li class="gallery-card">
+        <a href="${largeImageURL}" class="gallery-card-link">
+          <img
+            class="gallery-card-img"
+            src="${webformatURL}"
+            alt="${tags}"
+            width="360"
+          />
+        </a>
+        <ul class="image-desc-list">
+          <li class="image-desc-item">
+            <p class="image-desc-title">Likes</p>
+            <p class="image-desc-data">${likes}</p>
+          </li>
+          <li class="image-desc-item">
+            <p class="image-desc-title">Views</p>
+            <p class="image-desc-data">${views}</p>
+          </li>
+          <li class="image-desc-item">
+            <p class="image-desc-title">Comments</p>
+            <p class="image-desc-data">${comments}</p>
+          </li>
+          <li class="image-desc-item">
+            <p class="image-desc-title">Downloads</p>
+            <p class="image-desc-data">${downloads}</p>
+          </li>
+        </ul>
+      </li>
+    `
+      )
+      .join('');
+  }
